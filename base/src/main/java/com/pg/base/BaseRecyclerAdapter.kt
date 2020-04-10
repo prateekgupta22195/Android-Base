@@ -46,7 +46,7 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHo
 
     abstract fun getViewHolder(view: View, viewType: Int):RecyclerView.ViewHolder
 
-    internal interface Binder<T> {
+    interface Binder<T> {
         fun bind(data: T)
     }
 }
