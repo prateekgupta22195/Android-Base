@@ -4,25 +4,23 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragmentActivity : BaseActivity() {
 
-    abstract fun getFragmentContainerViewId() : Int
 
-
-    fun inflateReplaceFragment(addToBackStack: Boolean, backStackTag: String, fragment: Fragment) {
+    fun inflateReplaceFragment(addToBackStack: Boolean, backStackTag: String, fragment: Fragment, fragmentContainerViewId : Int) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         if (addToBackStack)
-            transaction.replace(getFragmentContainerViewId(), fragment).addToBackStack(backStackTag).commit()
+            transaction.replace(fragmentContainerViewId, fragment).addToBackStack(backStackTag).commit()
         else
-            transaction.replace(getFragmentContainerViewId(), fragment).commit()
+            transaction.replace(fragmentContainerViewId, fragment).commit()
     }
 
 
-    fun inflateAddFragment(addToBackStack: Boolean, backStackTag: String, fragment: Fragment) {
+    fun inflateAddFragment(addToBackStack: Boolean, backStackTag: String, fragment: Fragment, fragmentContainerViewId : Int) {
         val fragmentManager = supportFragmentManager
         if (addToBackStack)
-            fragmentManager.beginTransaction().add(getFragmentContainerViewId(), fragment).addToBackStack(backStackTag).commit()
+            fragmentManager.beginTransaction().add(fragmentContainerViewId, fragment).addToBackStack(backStackTag).commit()
         else
-            fragmentManager.beginTransaction().add(getFragmentContainerViewId(), fragment).commit()
+            fragmentManager.beginTransaction().add(fragmentContainerViewId, fragment).commit()
     }
 
 }
